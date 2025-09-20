@@ -8,8 +8,8 @@ import styles from './index.module.css';
 function Login(props) {
   const [captcha, setCaptcha] = useState(null);
   const [loginInfo, setLoginInfo] = useState({
-    loginId: '',
-    loginPwd: '',
+    loginId: 'admin',
+    loginPwd: '123456',
     captcha: '',
     remember: true,
   });
@@ -83,26 +83,24 @@ function Login(props) {
           onFinish={onFinish}
         >
           <Form.Item
-            name="username"
+            name="loginId"
             rules={[{ required: true, message: '请输入账号' }]}
           >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="请输入账号"
-              value={loginInfo.loginId}
               onChange={(e) => updateInfo(e.target.value, 'loginId')}
             />
           </Form.Item>
 
           <Form.Item
-            name="password"
+            name="loginPwd"
             rules={[{ required: true, message: '请输入密码' }]}
           >
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
               placeholder="请输入密码"
               type="password"
-              value={loginInfo.loginPwd}
               onChange={(e) => updateInfo(e.target.value, 'loginPwd')}
             />
           </Form.Item>
@@ -130,9 +128,12 @@ function Login(props) {
             </Row>
           </Form.Item>
 
-          <Form.Item name="remember" className={styles.remember}>
+          <Form.Item
+            name="remember"
+            valuePropName="checked"
+            className={styles.remember}
+          >
             <Checkbox
-              defaultChecked={loginInfo.remember}
               onChange={(e) => updateInfo(e.target.checked, 'remember')}
             >
               7天免登录
